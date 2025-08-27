@@ -1,6 +1,552 @@
 
 ---
 
+# 📌 Python Function এর ধরন + অনেক Example
+
+---
+
+## 1. **Built-in Function**
+
+Python এ আগে থেকেই তৈরি করা ফাংশন।
+
+```python
+print("Bangladesh")        # আউটপুট: Bangladesh
+print(len("Dhaka"))        # আউটপুট: 5
+print(max([2, 7, 3]))      # আউটপুট: 7
+print(min([2, 7, 3]))      # আউটপুট: 2
+print(sum([1, 2, 3, 4]))   # আউটপুট: 10
+print(type(100))           # আউটপুট: <class 'int'>
+print(abs(-10))            # আউটপুট: 10
+```
+
+---
+
+## 2. **User-defined Function**
+
+নিজে function বানিয়ে ব্যবহার করা।
+
+```python
+def greet(name):
+    return f"Hello, {name}"
+
+print(greet("Fahim"))   # আউটপুট: Hello, Fahim
+
+# আরেকটা Example: যোগফল
+def add(a, b):
+    return a + b
+
+print(add(5, 7))   # আউটপুট: 12
+```
+
+---
+
+## 3. **Lambda Function (Anonymous Function)**
+
+এক লাইনের ছোট function।
+
+```python
+square = lambda x: x*x
+print(square(6))   # আউটপুট: 36
+
+add = lambda a, b: a + b
+print(add(4, 9))   # আউটপুট: 13
+
+# লিস্ট sort করার সময়
+numbers = [(1, 'one'), (3, 'three'), (2, 'two')]
+numbers.sort(key=lambda x: x[0])
+print(numbers)   # আউটপুট: [(1, 'one'), (2, 'two'), (3, 'three')]
+```
+
+---
+
+## 4. **Recursive Function**
+
+নিজেকেই কল করে।
+
+```python
+# Factorial
+def factorial(n):
+    if n == 1:
+        return 1
+    return n * factorial(n-1)
+
+print(factorial(5))   # আউটপুট: 120
+
+# Fibonacci সিরিজ
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print([fibonacci(i) for i in range(6)])  # আউটপুট: [0, 1, 1, 2, 3, 5]
+```
+
+---
+
+## 5. **Higher-order Function**
+
+একটা function আরেকটা function কে প্যারামিটার হিসেবে নেয়।
+
+```python
+def square(x):
+    return x*x
+
+def cube(x):
+    return x*x*x
+
+def apply_function(func, value):
+    return func(value)
+
+print(apply_function(square, 5))  # আউটপুট: 25
+print(apply_function(cube, 3))    # আউটপুট: 27
+
+# Python এ ready-made higher-order function
+nums = [1, 2, 3, 4, 5]
+print(list(map(lambda x: x*2, nums)))   # আউটপুট: [2, 4, 6, 8, 10]
+print(list(filter(lambda x: x%2==0, nums))) # আউটপুট: [2, 4]
+```
+
+---
+
+## 6. **Generator Function**
+
+`yield` ব্যবহার করে একে একে ভ্যালু দেয়।
+
+```python
+def my_gen():
+    yield 1
+    yield 2
+    yield 3
+
+for val in my_gen():
+    print(val)
+
+# Example 2: Even number generator
+def even_numbers(n):
+    for i in range(n+1):
+        if i % 2 == 0:
+            yield i
+
+print(list(even_numbers(10)))  # আউটপুট: [0, 2, 4, 6, 8, 10]
+```
+
+---
+
+## 7. **Nested Function**
+
+ফাংশনের ভিতরে আরেকটা function থাকে।
+
+```python
+def outer(name):
+    def inner():
+        return f"Hello, {name}"
+    return inner()
+
+print(outer("Sakib"))  # আউটপুট: Hello, Sakib
+
+# Example 2
+def math_operation(a, b):
+    def add():
+        return a + b
+    def multiply():
+        return a * b
+    return add(), multiply()
+
+print(math_operation(5, 10))  # আউটপুট: (15, 50)
+```
+
+---
+
+## 8. **Anonymous Function**
+
+নামের দরকার হয় না। (lambda দিয়েই হয়)
+
+```python
+print((lambda x: x+10)(5))   # আউটপুট: 15
+print((lambda a, b: a*b)(3, 4))  # আউটপুট: 12
+```
+
+---
+
+## 9. **OOP Method**
+
+### 🔹 Instance Method
+
+```python
+class Student:
+    def __init__(self, name):
+        self.name = name
+    
+    def show(self):
+        return f"Name: {self.name}"
+
+s = Student("Rahim")
+print(s.show())   # আউটপুট: Name: Rahim
+```
+
+### 🔹 Class Method
+
+```python
+class Student:
+    count = 0
+    def __init__(self):
+        Student.count += 1
+    
+    @classmethod
+    def total_students(cls):
+        return cls.count
+
+s1 = Student()
+s2 = Student()
+print(Student.total_students())  # আউটপুট: 2
+```
+
+### 🔹 Static Method
+
+```python
+class Math:
+    @staticmethod
+    def add(a, b):
+        return a+b
+
+print(Math.add(5, 7))   # আউটপুট: 12
+```
+
+---
+
+# ✅ সারসংক্ষেপ
+
+| Function Type | Example কাজ                |
+| ------------- | -------------------------- |
+| Built-in      | `print(), len(), sum()`    |
+| User-defined  | নিজের function বানানো      |
+| Lambda        | ছোট এক লাইনের function     |
+| Recursive     | Factorial, Fibonacci       |
+| Higher-order  | `map(), filter()`          |
+| Generator     | `yield` দিয়ে value দেয়   |
+| Nested        | Function এর ভিতরে function |
+| Anonymous     | নাম ছাড়া lambda           |
+| OOP Methods   | Instance, Class, Static    |
+
+---
+
+
+
+---
+
+# 📌 Python Function Parameter Types with Example
+
+---
+
+## 1. **Single Parameter Function**
+
+একটি parameter ব্যবহার করা হয়।
+
+```python
+def square(x):
+    return x * x
+
+print(square(5))   # আউটপুট: 25
+```
+
+---
+
+## 2. **Multiple Parameter Function**
+
+একাধিক parameter নেয়।
+
+```python
+def add(a, b, c):
+    return a + b + c
+
+print(add(2, 3, 4))   # আউটপুট: 9
+```
+
+---
+
+## 3. **List as Parameter**
+
+ফাংশনের মধ্যে লিস্ট পাঠানো।
+
+```python
+def total(numbers):
+    return sum(numbers)
+
+print(total([1, 2, 3, 4, 5]))   # আউটপুট: 15
+```
+
+---
+
+## 4. **Tuple as Parameter**
+
+```python
+def show_tuple(data):
+    for item in data:
+        print(item)
+
+show_tuple((10, 20, 30))  
+# আউটপুট: 10, 20, 30
+```
+
+---
+
+## 5. **Set as Parameter**
+
+```python
+def show_set(items):
+    for item in items:
+        print(item)
+
+show_set({1, 2, 3, 4})  
+# আউটপুট: 1 2 3 4 (order fixed না)
+```
+
+---
+
+## 6. **Dictionary as Parameter**
+
+```python
+def show_dict(data):
+    for key, value in data.items():
+        print(f"{key}: {value}")
+
+show_dict({"name": "Rahim", "age": 25, "city": "Dhaka"})
+# আউটপুট:
+# name: Rahim
+# age: 25
+# city: Dhaka
+```
+
+---
+
+## 7. **Default Parameter Value**
+
+কোনো argument না দিলেও কাজ করবে।
+
+```python
+def greet(name="Guest"):
+    return f"Hello {name}"
+
+print(greet())          # আউটপুট: Hello Guest
+print(greet("Fahim"))   # আউটপুট: Hello Fahim
+```
+
+---
+
+## 8. \**Variable-length Arguments (*args)**
+
+যত খুশি argument পাঠানো যায় (tuple আকারে ধরে)।
+
+```python
+def add_all(*args):
+    return sum(args)
+
+print(add_all(1, 2, 3, 4, 5))   # আউটপুট: 15
+```
+
+---
+
+## 9. \*\*Keyword Arguments (**kwargs)**
+
+Dictionary আকারে parameter নেয়।
+
+```python
+def show_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+show_info(name="Rahim", age=20, city="Dhaka")
+# আউটপুট:
+# name: Rahim
+# age: 20
+# city: Dhaka
+```
+
+---
+
+## 10. **Mixed Parameters**
+
+সব একসাথে ব্যবহার করা যায়।
+
+```python
+def student_info(name, *subjects, **details):
+    print("Name:", name)
+    print("Subjects:", subjects)
+    print("Details:", details)
+
+student_info("Karim", "Math", "English", age=22, city="Khulna")
+# আউটপুট:
+# Name: Karim
+# Subjects: ('Math', 'English')
+# Details: {'age': 22, 'city': 'Khulna'}
+```
+
+---
+
+## 11. **Function Parameter as List Processing**
+
+```python
+def double_list(numbers):
+    return [x*2 for x in numbers]
+
+print(double_list([1, 2, 3]))   # আউটপুট: [2, 4, 6]
+```
+
+---
+
+## 12. **Unpacking Arguments**
+
+লিস্ট/টuple থেকে value unpack করে পাঠানো যায়।
+
+```python
+def add(a, b, c):
+    return a+b+c
+
+nums = [2, 3, 4]
+print(add(*nums))   # আউটপুট: 9
+
+data = {"a": 5, "b": 7, "c": 8}
+print(add(**data))  # আউটপুট: 20
+```
+
+---
+
+# ✅ Quick Summary
+
+| Parameter Type       | Example                     |
+| -------------------- | --------------------------- |
+| Single Parameter     | `def f(x)`                  |
+| Multi Parameter      | `def f(a, b, c)`            |
+| List Parameter       | `def f(lst)`                |
+| Tuple Parameter      | `def f(tup)`                |
+| Set Parameter        | `def f(st)`                 |
+| Dictionary Parameter | `def f(dic)`                |
+| Default Parameter    | `def f(name="Guest")`       |
+| \*args (tuple)       | `def f(*args)`              |
+| \*\*kwargs (dict)    | `def f(**kwargs)`           |
+| Mixed                | `def f(a, *args, **kwargs)` |
+| Unpacking            | `f(*list), f(**dict)`       |
+
+---
+
+
+অসাধারণ প্রশ্ন 👌
+Python এ **একটা function থেকে একাধিক value return** করা যায়। এটা খুবই useful যখন একসাথে অনেক তথ্য দরকার হয়।
+
+---
+
+# 📌 Multiple Value Return in Python
+
+## 1. **Tuple আকারে return করা** (সবচেয়ে সাধারণ পদ্ধতি)
+
+```python
+def calc(a, b):
+    add = a + b
+    sub = a - b
+    mul = a * b
+    return add, sub, mul   # একসাথে তিনটা value return করবে
+
+result = calc(10, 5)
+print(result)        # আউটপুট: (15, 5, 50)
+
+# আলাদা আলাদা ভেরিয়েবলেও রাখা যায়
+x, y, z = calc(10, 5)
+print("Add:", x)     # 15
+print("Sub:", y)     # 5
+print("Mul:", z)     # 50
+```
+
+---
+
+## 2. **List আকারে return করা**
+
+```python
+def even_odd(numbers):
+    even = [n for n in numbers if n % 2 == 0]
+    odd = [n for n in numbers if n % 2 != 0]
+    return [even, odd]
+
+nums = [1, 2, 3, 4, 5, 6]
+result = even_odd(nums)
+print("Even:", result[0])   # [2, 4, 6]
+print("Odd:", result[1])    # [1, 3, 5]
+```
+
+---
+
+## 3. **Dictionary আকারে return করা** (key দিয়ে সহজে access করা যায়)
+
+```python
+def student_info():
+    return {"name": "Rahim", "age": 20, "cgpa": 3.85}
+
+info = student_info()
+print(info["name"])   # Rahim
+print(info["cgpa"])   # 3.85
+```
+
+---
+
+## 4. **Set আকারে return করা**
+
+```python
+def unique_numbers():
+    return {1, 2, 3, 4}
+
+print(unique_numbers())   # {1, 2, 3, 4}
+```
+
+---
+
+## 5. **Mixed Data Return**
+
+```python
+def details():
+    name = "Karim"
+    marks = [85, 90, 78]
+    address = {"city": "Dhaka", "zip": 1207}
+    return name, marks, address
+
+n, m, a = details()
+print(n)          # Karim
+print(m)          # [85, 90, 78]
+print(a["city"])  # Dhaka
+```
+
+---
+
+## 6. **Real-life Example: Shopping Cart**
+
+```python
+def checkout(prices):
+    total = sum(prices)
+    count = len(prices)
+    avg = total / count
+    return total, count, avg
+
+t, c, a = checkout([100, 200, 300, 400])
+print("Total:", t)      # 1000
+print("Items:", c)      # 4
+print("Average:", a)    # 250.0
+```
+
+---
+
+# ✅ সারসংক্ষেপ
+
+Python function return করতে পারে:
+
+* **Tuple** → `return a, b, c`
+* **List** → `return [a, b, c]`
+* **Dictionary** → `return {"x": a, "y": b}`
+* **Set** → `return {a, b, c}`
+* **Mixed data** → (string, list, dict ইত্যাদি)
+
+---
+
+
+
+
 # Python Functions & Modules — বিস্তারিত + ৩০ উদাহরণ
 
 ## A) Functions (Basics)
