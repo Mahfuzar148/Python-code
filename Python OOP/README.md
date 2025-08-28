@@ -19,7 +19,7 @@ This README provides a **complete overview of OOP in Python** with theory, code 
 10. [Factory Example](#factory-example)
 11. [Practice Questions](#practice-questions)
 12. [Conclusion](#conclusion)
-
+```
 ---
 
 ## 🔹 Introduction
