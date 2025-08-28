@@ -1,11 +1,11 @@
-
+```markdown
 ---
 # 🐍 Python Object-Oriented Programming (OOP)
 
 This README provides a **complete overview of OOP in Python** with theory, code examples, and best practices.
 
 ---
-```markdown
+
 ## 📑 Table of Contents
 1. [Introduction](#introduction)
 2. [Key Concepts](#key-concepts)
@@ -19,7 +19,7 @@ This README provides a **complete overview of OOP in Python** with theory, code 
 10. [Factory Example](#factory-example)
 11. [Practice Questions](#practice-questions)
 12. [Conclusion](#conclusion)
-```
+
 ---
 
 ## 🔹 Introduction
