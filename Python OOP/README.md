@@ -5,7 +5,7 @@
 This README provides a **complete overview of OOP in Python** with theory, code examples, and best practices.
 
 ---
-
+```markdown
 ## 📑 Table of Contents
 1. [Introduction](#introduction)
 2. [Key Concepts](#key-concepts)
